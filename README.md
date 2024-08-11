@@ -135,7 +135,7 @@ pipeline {
  ## Create a Dockerfile:
 - Write a Dockerfile to define the environment for your application:
 ## Dockerfile
-FROM openjdk:11-jre-slim
+FROM node 
 WORKDIR /app
 COPY target/your-app.jar /app/your-app.jar
 ENTRYPOINT ["java", "-jar", "your-app.jar"]
