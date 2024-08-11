@@ -184,8 +184,8 @@ spec:
         app: my-app
     spec:
       containers:
-      - name: your-app-container
-        image: your-image-name:latest
+      - name: my-app-container
+        image: node.js:latest
         ports:
         - containerPort: 8080
 # Service
@@ -204,6 +204,6 @@ spec:
 Deploy to Kubernetes:
 Use kubectl to deploy the application:
 bash
-Copy code
+## Copy code
 kubectl apply -f k8s-deployment.yaml
 kubectl apply -f k8s-service.yaml
