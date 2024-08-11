@@ -34,7 +34,7 @@
 
 2)  #### Pipeline creation
     - Click on **New Item**
-    - Enter an item name: **hono-pipeline** & select the category as **Pipeline**
+    - Enter an item name: **dynamic-pipeline** & select the category as **Pipeline**
     - Now scroll-down and in the Pipeline section --> Definition --> Select Pipeline script from SCM
     - SCM: **Git**
     - Repositories
@@ -58,19 +58,21 @@
             - Username: "Enter your Dockerhub user name" 
             - Password: "Enter your Dockerhub password"          
             - Description: DOCKERHUB_CREDENTIALS
-            - Click on Create            
+            - Click on Create
+        2) AWS credentials
+           - secret key
+           - secret access key           
 
 
 ### Performing continous integration with GitHub webhook
 
 1) #### Add jenkins webhook to github
-    - Access your repo **jenkins_with_terraform_deployment** on github
     - Goto Settings --> Webhooks --> Click on Add webhook 
     - Payload URL: **htpp://REPLACE-JENKINS-SERVER-PUBLIC-IP:8080/github-webhook/**    (Note: The IP should be public as GitHub is outside of the AWS VPC where Jenkins server is hosted)
     - Click on Add webhook
 
 2) #### Configure on the Jenkins side to pull based on the event
-    - Access your jenkins server, pipeline **hono-pipeline**
+    - Access your jenkins server, pipeline **dynamic-pipeline**
     - Once pipeline is accessed --> Click on Configure --> In the General section --> **Select GitHub project checkbox** and fill your repo URL of the project.
     - Scroll down --> In the Build Triggers section -->  **Select GitHub hook trigger for GITScm polling checkbox**
 
@@ -89,7 +91,7 @@ pipeline {
         stage('Git Checkout') {
             steps {
                     echo 'Cloning project codebase...'
-                	git branch: 'main', url: '(https://github.com/Muafah/HONO)/hilltop-nodejs-app.git'
+                	git branch: 'main', url: '(https://github.com/Muafah/HONO)/dynamic-nodejs-app.git'
                 checkout scm
             }
         }
@@ -108,7 +110,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    docker.build("your-image-name:${env.BUILD_ID}")
+                    docker.build("node.js:${env.BUILD_ID}")
                 }
             }
         }
@@ -116,7 +118,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-credentials') {
-                        docker.image("your-image-name:${env.BUILD_ID}").push('latest')
+                        docker.image("node.js:${env.BUILD_ID}").push('latest')
                     }
                 }
             }
@@ -136,7 +138,6 @@ pipeline {
 - Install Docker on the machine where Jenkins is running.
  ## Create a Dockerfile:
 - Write a Dockerfile to define the environment for your application:
-  
 ## Dockerfile
 FROM node:10-alpine
 
