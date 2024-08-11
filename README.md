@@ -47,8 +47,9 @@
     - Click on "Manage Jenkins"
     - Click on "Plugin Manager"
     - Click "Available"
-    - Search and Install the following Plugings "Install Without Restart"        
-        - **Terraform**
+    - Search and Install the following Plugings "Install Without Restart"
+    - Install plugins for GitHub integration, Docker, Kubernetes, and any other tools you plan to use (e.g., Pipeline, Blue Ocean, etc.).       
+      
 
 4)  #### Credentials setup(AWS):
     - Click on Manage Jenkins --> Manage Credentials --> Global credentials (unrestricted) --> Add Credentials
