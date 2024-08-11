@@ -1,7 +1,7 @@
 {
-    "name": "team dynamic-nodejs-image",
+    "name": "dynamic-nodejs-image",
     "version": "1.0.0",
-    "description": "team dynamic App",
+    "description": "dynamic App",
     "author": "team dynamic", 
     "license": "MIT",
     "main": "app.js",
