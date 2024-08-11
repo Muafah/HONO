@@ -134,16 +134,76 @@ pipeline {
 - Install Docker on the machine where Jenkins is running.
  ## Create a Dockerfile:
 - Write a Dockerfile to define the environment for your application:
+  
 ## Dockerfile
-FROM node 
-WORKDIR /app
-COPY target/your-app.jar /app/your-app.jar
-ENTRYPOINT ["java", "-jar", "your-app.jar"]
-Build and Test Docker Image Locally:
-Build the Docker image locally to ensure it's working:
+FROM node:10-alpine
+
+RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+
+WORKDIR /home/node/app
+
+COPY package*.json ./
+
+USER node
+
+RUN npm install
+
+COPY --chown=node:node . .
+
+EXPOSE 8080
+
+CMD [ "node", "app.js" ]
+
+- Build and Test Docker Image Locally:
+- Build the Docker image locally to ensure it's working:
+bash
+  ### Copy code
+- docker build -t your-image-name .
+- docker run -p 8080:8080 your-image-name
+
+7) ## Set Up Kubernetes for Deployment
+# Install Kubernetes:
+- Set up a Kubernetes cluster using Minikube, k3s, or a cloud provider like GKE (Google Kubernetes Engine), EKS (Amazon Elastic Kubernetes Service), or AKS (Azure Kubernetes Service).
+Create Kubernetes Deployment and Service Files:
+- Write the Kubernetes YAML files (k8s-deployment.yaml, k8s-service.yaml) for deploying your application:
+yaml
+# Copy code
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app-deployment
+spec:
+  replicas: 2
+  selector:
+  matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: your-app-container
+        image: your-image-name:latest
+        ports:
+        - containerPort: 8080
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: your-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+Deploy to Kubernetes:
+Use kubectl to deploy the application:
 bash
 Copy code
-docker build -t your-image-name .
-docker run -p 8080:8080 your-image-name
-
-
+kubectl apply -f k8s-deployment.yaml
+kubectl apply -f k8s-service.yaml
