@@ -88,6 +88,8 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
+                    echo 'Cloning project codebase...'
+                	git branch: 'main', url: '(https://github.com/Muafah/HONO)/hilltop-nodejs-app.git'
                 checkout scm
             }
         }
