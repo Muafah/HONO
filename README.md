@@ -81,7 +81,7 @@ Once both the above steps are done click on Save.
 Define the Stages:
 Create a Jenkinsfile in the root of your GitHub repository. This file will define the pipeline stages:
 groovy
-Copy code
+
 pipeline {
     agent any
 
@@ -207,3 +207,35 @@ bash
 ## Copy code
 kubectl apply -f k8s-deployment.yaml
 kubectl apply -f k8s-service.yaml
+
+8) ## Integrate Jenkins with Kubernetes
+# Install Kubernetes Plugin in Jenkins:
+- Go to Manage Jenkins > Manage Plugins > Available and install the Kubernetes plugin. (same as step 3)
+Configure Kubernetes in Jenkins:
+- Go to Manage Jenkins > Configure System > Cloud > Kubernetes and add your Kubernetes cluster details.
+Set Up Kubernetes Agents:
+Configure Jenkins to use Kubernetes pods as agents for running jobs.
+
+9) ## Monitoring and Maintenance
+# Monitor Jenkins Jobs:
+- Regularly check Jenkins jobs for failures or errors.
+- Monitor Kubernetes Deployments:
+-Use kubectl commands to monitor the health of your application in Kubernetes:
+bash
+# Copy code
+- kubectl get pods
+- kubectl logs pod-name
+# Set Up Alerts and Notifications:
+Integrate Jenkins with Slack, email, or other notification services for real-time alerts.
+
+10) ## Scale and Improve
+Scaling Kubernetes Deployments:
+Adjust the number of replicas in your Kubernetes deployment based on load.
+## CI/CD Pipeline Enhancements:
+Add stages for security checks, performance testing, or automated rollbacks.
+
+11) ## Documentation and Cleanup
+- Document the Pipeline:
+- Ensure all steps, configurations, and scripts are well-documented.
+- Clean Up Resources:
+- Regularly clean up unused Docker images, old deployments, and logs.
