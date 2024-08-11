@@ -127,8 +127,23 @@ pipeline {
     }
 }
 
-
-
 ### Finally observe the whole flow and understand the integrations
+
+6) ###  Set Up Docker for Containerization
+## Install Docker:
+- Install Docker on the machine where Jenkins is running.
+ ## Create a Dockerfile:
+- Write a Dockerfile to define the environment for your application:
+## Dockerfile
+FROM openjdk:11-jre-slim
+WORKDIR /app
+COPY target/your-app.jar /app/your-app.jar
+ENTRYPOINT ["java", "-jar", "your-app.jar"]
+Build and Test Docker Image Locally:
+Build the Docker image locally to ensure it's working:
+bash
+Copy code
+docker build -t your-image-name .
+docker run -p 8080:8080 your-image-name
 
 
