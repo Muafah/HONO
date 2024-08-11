@@ -2,10 +2,10 @@
 
 ## CICD setup
 1) ###### GitHub setup
-    Fork GitHub Repository by using the existing repo "jenkins-cicd-repo" (https://github.com/HILL-TOPCONSULTANCY/jenkins-cicd-repo.git)     
+    Fork GitHub Repository by using the existing repo "HONO" (https://github.com/Muafah/HONO.git)     
     - Go to GitHub (github.com)
     - Login to your GitHub Account
-    - Fork repository "jenkins-cicd-repo" (https://github.com/HILL-TOPCONSULTANCY/jenkins-cicd-repo.git) & name it "jenkins-cicd-repo.git"
+    - Fork repository "HONO" (https://github.com/Muafah/HONO.git) & name it "HONO.git"
     - Clone your newly created repo to your local
 
 2) ###### Jenkins
@@ -27,18 +27,18 @@
         - Copy the password and login to Jenkins
     - Plugins: Choose Install Suggested Plugings 
     - Provide 
-        - Username: **admin**
-        - Password: **admin**
-        - Name and Email can also be admin. You can use `admin` all, as its a poc.
+        - Username: **teamdynamic**
+        - Password: **teamdynamic**
+        - Name and Email can also be admin. You can use `teamdynamics` all, as its a poc.
     - Continue and Start using Jenkins
 
 2)  #### Pipeline creation
     - Click on **New Item**
-    - Enter an item name: **jenkins-cicd-pipeline** & select the category as **Pipeline**
+    - Enter an item name: **hono-pipeline** & select the category as **Pipeline**
     - Now scroll-down and in the Pipeline section --> Definition --> Select Pipeline script from SCM
     - SCM: **Git**
     - Repositories
-        - Repository URL: FILL YOUR OWN REPO URL (that we created by importing in the first step)
+        - Repository URL: FILL YOUR OWN REPO URL (that we created by importing in the first step) (https://github.com/Muafah/HONO.git)  
         - Branch Specifier (blank for 'any'): */main
         - Script Path: Jenkinsfile
     - Save
@@ -69,23 +69,14 @@
     - Click on Add webhook
 
 2) #### Configure on the Jenkins side to pull based on the event
-    - Access your jenkins server, pipeline **jenkins-cicd-pipeline**
+    - Access your jenkins server, pipeline **hono-pipeline**
     - Once pipeline is accessed --> Click on Configure --> In the General section --> **Select GitHub project checkbox** and fill your repo URL of the project.
     - Scroll down --> In the Build Triggers section -->  **Select GitHub hook trigger for GITScm polling checkbox**
 
 Once both the above steps are done click on Save.
 
 
-### Codebase setup
 
-1) #### For checking the Gitbut webhook uncomment lines 18-24 in main.tf file
-    - Go back to your local, open your "jenkins-cicd-repo" project on VSCODE
-    - Open "main.tf file" uncomment lines   
-    - Save the changes in both files
-    - Finally push changes to repo
-        `git add .`
-        `git commit -m "relevant commit message"`
-        `git push`
 ### Finally observe the whole flow and understand the integrations
 
-# Happy learning from Hilltop  Consultancy
+
