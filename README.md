@@ -76,6 +76,57 @@
 
 Once both the above steps are done click on Save.
 
+5) #### Jenkins pipeline
+ Write a Jenkinsfile
+Define the Stages:
+Create a Jenkinsfile in the root of your GitHub repository. This file will define the pipeline stages:
+groovy
+Copy code
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Build') {
+            steps {
+                // Example: Using Maven
+                sh 'mvn clean package'
+            }
+        }
+        stage('Test') {
+            steps {
+                // Example: Running unit tests
+                sh 'mvn test'
+            }
+        }
+        stage('Docker Build') {
+            steps {
+                script {
+                    docker.build("your-image-name:${env.BUILD_ID}")
+                }
+            }
+        }
+        stage('Push to Docker Hub') {
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-credentials') {
+                        docker.image("your-image-name:${env.BUILD_ID}").push('latest')
+                    }
+                }
+            }
+        }
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh 'kubectl apply -f k8s-deployment.yaml'
+            }
+        }
+    }
+}
+
 
 
 ### Finally observe the whole flow and understand the integrations
