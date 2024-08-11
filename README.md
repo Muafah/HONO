@@ -1,7 +1,6 @@
-## Devops-fully-Docker-Image-deployment-with-Jenkins
-Fully automated and secured Terraform infra pipeline
+## CICD pipeline using Jenkins, integrating GitHub for version control, and deploying to kubernetes cluster
 
-## CICD Infra setup
+## CICD setup
 1) ###### GitHub setup
     Fork GitHub Repository by using the existing repo "jenkins-cicd-repo" (https://github.com/HILL-TOPCONSULTANCY/jenkins-cicd-repo.git)     
     - Go to GitHub (github.com)
