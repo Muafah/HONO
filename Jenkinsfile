@@ -12,7 +12,7 @@ pipeline {
         stage('Build-Image') {
             steps {
                 // Example: Using Maven
-                sh 'docker build -t $IMAGE_REPO_NAME:$BUILD_NUMBER.'
+                sh 'docker build -t $teamimage:$vi.'
                 sh 'docker images'
             }
         }
