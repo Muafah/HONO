@@ -5,7 +5,7 @@ pipeline {
         stage('Git Checkout') {
             steps {
                     echo 'Cloning project codebase...'
-                	git branch: 'main', url: '(https://github.com/Muafah/HONO)/dynamic-nodejs-app.git'
+                	git branch: 'main', url: '(https://github.com/Tean-Dynamic/HONO.git'
             }
         }
         
