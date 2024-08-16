@@ -150,7 +150,15 @@ pipeline {
 
 6) ###  Set Up Docker for Containerization
 ## Install Docker:
-- Install Docker on the machine where Jenkins is running.
+  # Install Docker on the machine where Jenkins is running.
+  # !/bin/bash
+sudo yum update -y
+sudo yum -y install docker
+sudo service docker start
+sudo systemctl enable docker.service 
+sudo usermod -a -G docker ec2-user 
+sudo chmod 666 /var/run/docker.sock
+
  ## Create a Dockerfile:
 - Write a Dockerfile to define the environment for your application:
 ## Dockerfile
