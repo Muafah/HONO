@@ -265,3 +265,9 @@ Add stages for security checks, performance testing, or automated rollbacks.
 - Ensure all steps, configurations, and scripts are well-documented.
 - Clean Up Resources:
 - Regularly clean up unused Docker images, old deployments, and logs.
+
+
+12) challenges faced during execution of this project and how we solced the challenges
+First challenge was getting bulid failues and this had to do with properly intalling git in our jenkins server
+2ndly putting the right docker credentials in out junkins pipeline was a blocker.
+3rdly 
