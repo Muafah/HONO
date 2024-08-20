@@ -182,7 +182,6 @@ CMD [ "node", "app.js" ]
 
 - Build and Test Docker Image Locally:
 - Build the Docker image locally to ensure it's working:
-bash
   ### Copy code
 - docker build -t your-image-name .
 - docker run -p 8080:8080 your-image-name
